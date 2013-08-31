@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div class="span2"></div>
+	<div id="main-links" class="span6" style="padding-top:3%;"> 
+		{% block main-links %} {% endblock %}
+	</div>
+        <div id="categories" class="span2" style="text-align:right; padding-top:2%;">
+       		 <ul class="unstyled">
+                 	<li class="categories-header">Categories</li>
+                       	<li><a href={% url blog_home %}>All</a></li>
+                        {% for tag in tag_list %}
+                        	<li><a href={% url blog_tag_page tag.name %} style="text-decoration: none;">{{tag.name|capfirst}}</a></li>
+                       	{% endfor %}
+             	 </ul>
+                 <br/>
+                 <ul class="unstyled">
+                 	<li class="categories-header">Bookmarks</li>
+                        <li><a href={% url links_home %}>All</a></li>
+                        <div class="bookmark-tags">
+                       		{% for tag in links_tag_list %}
+                                	<li><a href={% url links_tag_page tag.name %}>{{ tag.name|capfirst }}</a></li>
+                                {% endfor %}
+                        </div>
+                 </ul>
+	</div>
+       	<div class="span2"></div>
+{% endblock %}
